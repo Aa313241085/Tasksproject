@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block content %}
+
+  <h1>Login Focus system: </h1>
+
+  <center>
+    <form action="/login/" method="post">
+      <div class="input">
+        <br><br/>
+        <input type="text" name="username" placeholder="Name">
+        <br><br/>
+        <input type="password" name="password" placeholder="Password">
+        <br><br/>
+        <input type="submit" value="Login"> 
+        <br>
+        {{message}}
+      </div>  
+  </form>
+</center>
+
+{% endblock content %}

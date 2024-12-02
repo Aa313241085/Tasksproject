@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% block content %}
+
+users:
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Delete User</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td><div class="row">{{ user.username }}</div></td>
+            <td><div class="row">{{ user.password }}</div></td>
+            <td><a href="{% url 'delete_user' user.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+
+{% endblock content %}

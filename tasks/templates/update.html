@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h1>Update Task: </h1>
+
+<form action="/update/{{ task.id }}/" method="POST">
+<center>
+    <div class="input">
+        {% csrf_token %}
+        Client:<br>
+        <select name="client" style="width:10%">
+            {% for client in clients %}
+            {% if task.client == client %}
+            <option selected value='{{client}}'>{{client}}</option>
+            {%else%}
+            <option value='{{client}}'>{{client}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br><br>
+        Category:<br>
+        <select name="category" style="width:10%">
+            {% for cat in categories %}
+            {% if task.category == cat %}
+            <option selected value='{{cat}}'>{{cat}}</option>
+            {%else%}
+            <option value='{{cat}}'>{{cat}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br><br>
+        Description:<br>
+            <input name="description" style="width:10%" value="{{ task.description }}">
+            <br><br>
+         Shared With:<br>
+        <select name="sharedTask" style="width:10%">
+            <option selected value=""> </option>
+            {% for user in users %}
+            {% if user.username == sharedTask %}
+            <option selected value='{{user.username}}'>{{user.username}}</option>
+            {%else%}
+            <option value='{{user.username}}'>{{user.username}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="Update">
+        </div>
+    </form>
+</center>
+
+{% endblock content %}

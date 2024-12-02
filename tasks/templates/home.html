@@ -1,0 +1,61 @@
+{% extends "main.html" %}
+{% block content %}
+
+<center>
+    <h1>Opening readings for the Focus system - malam Team</h1>
+</center>
+My Tasks:
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Open By</th>
+            <th>Delete Task</th>
+            <th>Update Task</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td><div class="row">{{ task.create_date }}</div></td>
+            <td><div class="row">{{ task.client }}</div></td>
+            <td><div class="row">{{ task.description }}</div></td>
+            <td><div class="row">{{ task.category }}</div></td>
+            <td><div class="row">{{ task.user.username }}</div></td>
+
+            <td><a href="{% url 'delete' task.id %}">Delete</a></td>
+            <td><a href="{% url 'update' task.id %}">Update</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if request.session.auth.is_admin == False %}
+Shared Tasks:
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Open By</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sharedTask in sharedTasks %}
+        <tr>
+            <td><div class="row">{{ sharedTask.task.create_date }}</div></td>
+            <td><div class="row">{{ sharedTask.task.client }}</div></td>
+            <td><div class="row">{{ sharedTask.task.description }}</div></td>
+            <td><div class="row">{{ sharedTask.task.category }}</div></td>
+            <td><div class="row">{{ sharedTask.task.user.username }}</div></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+{% endblock content %}

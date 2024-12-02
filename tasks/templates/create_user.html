@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+
+  <h1>Create a new user malam systems </h1>
+
+  <center><form id="createUserForm" action="/create-user/" method="post">
+      <div class="input">
+        <br><br/>
+        Username:
+        <input type="text" name="username" placeholder="Name">
+        <br><br/>
+        Password:
+        <input type="password" name="password" placeholder="Password">
+        <br><br/>
+        Admin User:
+        <br><br/>
+        <select name="is_admin">
+          <option value="False">False</option>
+           <option value="True">True</option>
+        </select>
+        <br><br/>
+        <button onclick="validateCreateUser();return false;">Create User</button> 
+        <br>
+        <div id="messageJS"></div>
+        <div id="messageView">{{message}}</div>
+      </div>
+    </form></center>
+    
+{% endblock content %}
